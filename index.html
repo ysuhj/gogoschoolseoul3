@@ -291,6 +291,7 @@ details.changes summary{cursor:pointer;font-weight:700}
         <li><span class="e" aria-hidden="true">✋</span>빗물받이 뚜껑은 열거나 만지지 않아요.</li>
         <li><span class="e" aria-hidden="true">👀</span>선생님이나 어른과 함께 다녀요.</li>
         <li><span class="e" aria-hidden="true">🙈</span>사람 얼굴이나 자동차 번호판은 찍지 않아요.</li>
+        <li><span class="e" aria-hidden="true">🚧</span>공사장 울타리 안으로는 들어가지 않고, 공사 차량을 조심해요.</li>
       </ul>
       <div class="mode-note"><span class="e" aria-hidden="true">📸📍</span><span>밖에서는 <b>사진</b>과 <b>위치</b>만 기록해요. 얼마나 막혔는지, 어떤 쓰레기인지는 교실에서 🔍 살펴보기로 함께 기록해요.</span></div>
       <h3 class="sec-h">오늘은 어디를 조사해요?</h3>
@@ -384,7 +385,7 @@ details.changes summary{cursor:pointer;font-weight:700}
       <h2 class="q">주변은 어떤 곳이에요?</h2>
       <p class="sub">사진 속 빗물받이 주변을 떠올리고, 아래 지도도 살펴본 다음 하나만 골라요.</p>
       <div id="envMap" class="envmap" aria-label="빗물받이 주변 지도"></div>
-      <p class="envcap">📍가 이 빗물받이 자리예요. 주변에 운동장, 화단, 건물 입구가 있는지 살펴봐요.</p>
+      <p class="envcap">📍가 이 빗물받이 자리예요. 지도에는 공사 전 모습이 보일 수 있으니, 지금 공사장·화단·건물 입구가 어디에 있는지 떠올리며 골라요.</p>
       <div class="tiles three" id="envTiles"></div>
       <div class="field">
         <label for="memoInput">👀 더 본 것이 있나요? (안 적어도 돼요)</label>
@@ -491,11 +492,11 @@ details.changes summary{cursor:pointer;font-weight:700}
   const GROUPS = GROUP_EMOJI.slice(0, nGroups).map((e, i) => [(i + 1) + "모둠", e]);
   const PHASES = [["school","🏫","학교 안"],["practice","✏️","연습"]];
   const P = Object.fromEntries(PHASES.map(([k,e,l]) => [k,{e,l}]));
-  const TYPES = [["butt","🚬","담배꽁초"],["leaf","🍂","낙엽·나뭇가지"],["vinyl","🛍️","비닐·과자봉지"],["plastic","🥤","컵·캔·병"],["paper","📄","종이·전단지"],["soil","🟫","흙·모래"],["food","🍙","음식물"],["etc","❓","기타"]];
+  const TYPES = [["butt","🚬","담배꽁초"],["leaf","🍂","낙엽·나뭇가지"],["vinyl","🛍️","비닐·과자봉지"],["plastic","🥤","컵·캔·병"],["paper","📄","종이·전단지"],["soil","🟫","흙·모래"],["food","🍙","음식물"],["debris","🧱","공사 자재·시멘트 조각"],["etc","❓","기타"]];
   const T = Object.fromEntries(TYPES.map(([k,e,l]) => [k,{e,l}]));
-  const ENVS = [["ground","⚽","운동장 옆"],["garden","🌳","화단·나무 옆"],["door","🚪","건물 입구 옆"],["food","🍽️","급식실·매점 근처"],["road","🚗","주차장·차 다니는 길"],["gate","🏫","교문 근처"],["etc","📍","그 밖의 곳"]];
+  const ENVS = [["build","🏗️","공사장 옆"],["garden","🌳","화단·나무 옆"],["door","🚪","건물 입구 옆"],["path","🚶","학생들이 다니는 길"],["road","🚗","주차장·차 다니는 길"],["gate","🏫","교문 근처"],["etc","📍","그 밖의 곳"]];
   const E = Object.fromEntries(ENVS.map(([k,e,l]) => [k,{e,l}]));
-  const REASONS = [["tree","🌳","나무·화단이 가까워서"],["people","🚶","사람이 많이 다녀서"],["snack","🍪","간식 쓰레기를 버려서"],["sand","⚽","운동장 흙이 쓸려 와서"],["bin","🗑️","쓰레기통이 없어서"],["slope","⛰️","비탈이라 흙·물이 모여서"],["cover","🙅","덮개로 덮여 있어서"],["unknown","🤔","잘 모르겠어요"],["etc","✏️","다른 생각"]];
+  const REASONS = [["tree","🌳","나무·화단이 가까워서"],["people","🚶","사람이 많이 다녀서"],["build","🏗️","공사장 흙·먼지가 쓸려 와서"],["bin","🗑️","쓰레기통이 없어서"],["slope","⛰️","비탈이라 흙·물이 모여서"],["cover","🙅","덮개로 덮여 있어서"],["unknown","🤔","잘 모르겠어요"],["etc","✏️","다른 생각"]];
   const R = Object.fromEntries(REASONS.map(([k,e,l]) => [k,{e,l}]));
   // 상태 3단계 — 과정안(원활함 / 일부 막힘 / 많이 막힘)과 같은 말로 통일
   const GR = [{e:"😀",l:"원활해요",c:"g0"},{e:"😟",l:"일부 막혔어요",c:"g2"},{e:"😱",l:"많이 막혔어요",c:"g3"}];
